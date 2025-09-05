@@ -1,0 +1,97 @@
+@startuml
+
+' ==== CLASES ====
+
+class Juego {
+  -Jugador : jugadores
+  -Nivel : niveles
+  -Fondo : fondos
+  +Puntaje : puntajes
+  +Tiempo : tiempos
+}
+
+class Jugador {
+  -Arma : armas
+  +Vehiculo : vehiculos
+  +Item: Items
+}
+
+
+class Enemigo {
+  -Arma: armas
+}
+
+
+class JefeFinal {
+  -Arma: armas
+}
+
+class Vehiculo {
+  +Jugador: jugador
+}
+
+class Moto {
+  +Jugador: jugador
+}
+
+class Torreta {
+  +Jugador: jugador
+}
+
+
+class Arma {
+  -Municion: municiones
+}
+
+
+class Nivel {
+  -Enemigo: enemigos
+  -JefeFinal: jefefinal
+  -escenario: Escenario
+  +iniciar()
+}
+
+class Escenario {
+  -Plataforma: plataformas
+  -Obstaculo: obstaculos
+  -Puente: puentes
+}
+
+' ==== HERENCIAS ====
+Jugador <|-- Mando
+Enemigo <|-- Soldado
+Enemigo <|-- Alien
+Enemigo <|-- JefeFinal
+Vehiculo <|-- Moto
+Vehiculo <|-- Torreta
+Item <|-- VidaExtra
+Item <|-- PowerUp
+Arma <|-- Bala
+Arma <|-- Granada
+Arma <|-- Misil
+
+' ==== AGREGACIONES ====
+Jugador o-- "1..*" Arma
+Jugador o-- Vehiculo
+Jugador o-- "0..*" Item
+Juego o-- Puntaje
+Juego o-- Tiempo
+Nivel o-- "1..*" Enemigo
+Nivel o-- JefeFinal
+Control o-- Jugador
+Musica o-- Juego
+EfectoSonido o-- Juego
+
+' ==== COMPOSICIONES ====
+Juego *-- "1..2" Jugador
+Juego *-- "1..*" Nivel
+Nivel *-- Escenario
+Escenario *-- "1..*" Plataforma
+Escenario *-- "0..*" Obstaculo
+Escenario *-- "0..*" Puente
+BaseAlienigena *-- "1..*" Alien
+Arma *-- "1..*" Municion
+Vehiculo *-- Jugador
+Juego *-- Fondo
+
+@enduml
