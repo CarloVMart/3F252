@@ -1,5 +1,5 @@
-#include<iostream>
-#include<Foco.hpp>
+#include <iostream>
+#include <Foco.hpp>
 using namespace std;
 
 int main(int argc, char const *argv[]){
